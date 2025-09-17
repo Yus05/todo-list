@@ -16,7 +16,9 @@ def create_app():
         SQLALCHEMY_DATABASE_URI = "sqlite:///todolist.db"
     )
     
+    
     db.init_app(app)
+    
     
     #registrar Blueprint-----------
     from . import todo
@@ -26,7 +28,7 @@ def create_app():
     app.register_blueprint(auth.bp)
     #------------------------------
     
-    
+
     
     @app.route('/')
     def index():
