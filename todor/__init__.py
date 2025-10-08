@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-# 
+# extension de SQLAlchemy
 db = SQLAlchemy()
 
 def create_app():
