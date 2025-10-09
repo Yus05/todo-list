@@ -76,6 +76,16 @@ def load_logged_user():
 
 
 
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+
+
+
+
+
 
 """
 CONTEXTO GENERAL DEL ARCHIVO:
