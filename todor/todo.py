@@ -1,19 +1,34 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for, g
+
+from todor.auth import login_required
+
+from .models import Todo, User
+from todor import db
 
 bp = Blueprint('todo', __name__, url_prefix='/todo')
 
-from todor.auth import login_required
 
 
 @bp.route('/list')
 @login_required
 def index():
-    return render_template('todo/index.html')
+    todos = Todo.query.all()
+    return render_template('todo/index.html', todos = todos)
 
 
-@bp.route('/create')
+@bp.route('/create', methods=('GET', 'POST'))
+@login_required
 def create():
-    return "Crear una Tarea"
+    if request.method == 'POST':
+        title = request.form['title']
+        desc = request.form['desc']
+        
+        todo = Todo(g.user.id, title, desc)
+        
+        db.session.add(todo)
+        db.session.commit()
+        return redirect(url_for('todo.index'))
+    return render_template('todo/create.html')
 
 
 
