@@ -25,7 +25,7 @@
                 </td>
                 <td>{{todo.state}}</td>
                 <td>
-                    <a href="" class="btn btn-info btn-sm">Editar</a>
+                    <a href="{{url_for('todo.update', id = todo.id)}}" class="btn btn-info btn-sm">Editar</a>
                 </td>
                 <td>
                     <a href="" class="btn btn-danger btn-sm">Eliminar</a>
