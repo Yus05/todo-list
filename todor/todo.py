@@ -16,6 +16,7 @@ def index():
     return render_template('todo/index.html', todos = todos)
 
 
+
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
@@ -29,6 +30,7 @@ def create():
         db.session.commit()
         return redirect(url_for('todo.index'))
     return render_template('todo/create.html')
+
 
 
 def get_todo(id):
